@@ -34,21 +34,21 @@ var qwerty = [1,2,3,4,5];
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit' || text === 'exit') {
+  if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
   }
   else if(text.trim().split(" ", 1) == 'hello'){
     var x = text.trim().split(" ").pop();
     hello(x);
   }
-  else if(text === 'help'){
+  else if(text.trim() === 'help'){
     help();
   }
-  else if(text === 'list'){
+  else if(text.trim() === 'list'){
     list();
   }
   else if(text.trim().split(" ", 1) == 'add'){
-    if(text == "add"){
+    if(text.trim() == "add"){
       console.log('error')
     }else{
       y = text.trim().split(" ").pop();
@@ -60,7 +60,7 @@ function onDataReceived(text) {
     if(p > qwerty.length ){
         console.log('The givven number is not available');
     }else {
-    if(text == "remove"){
+    if(text.trim() == "remove"){
       qwerty.pop();
       console.log(qwerty);
     }else{
@@ -68,6 +68,12 @@ function onDataReceived(text) {
       remove(p);
     }}
   }
+  else if(text.trim().split(" ", 1) == 'edit'){
+      edit(qwerty, text);
+  }
+
+  
+
   else{
     unknownCommand(text);
   }
@@ -122,8 +128,8 @@ function help(){
 
 
 function list(){
-  for(var i=1;i<3;i++){
-    console.log(i);
+  for(var i=0;i<qwerty.length;i++){
+    console.log(`${i+1} ${qwerty[i]}`);
   }
 }
 
@@ -143,6 +149,17 @@ function remove(p){
   }
 }
 
+function edit(qwerty, text){
+ var t =text.trim().split(' ');
+  if(t.length == 2){
+   qwerty[qwerty.length - 1] = t[1];
+ } else if(t.length > 2){
+   qwerty[t[1]-1] = t[2];
+ }else {
+  console.log('ERROR');
+ }
+}
+
 // The following line starts the application
 startApp("Ali")
-onDataReceived("remove 10")
+
