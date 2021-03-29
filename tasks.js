@@ -93,9 +93,9 @@ function quit(){
  * @returns {void}
  */
 function list(){
-  console.log('Type \"hello\" to say hello! or \"exit\" to quit the app')
+  console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x.\nType \"exit\" to quit the app.')
 }
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("hello akt")
+onDataReceived("help")
