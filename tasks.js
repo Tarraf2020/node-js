@@ -58,6 +58,7 @@ function onDataReceived(text) {
   else if(text.trim().split(" ", 1) == 'remove'){
     if(text == "remove"){
       qwerty.pop();
+      console.log(qwerty);
     }else{
       p = text.trim().split(" ").pop();
       remove(p);
@@ -112,7 +113,7 @@ function quit(){
  * @returns {void}
  */
 function help(){
-  console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x.\nType \"exit\" to quit the app.')
+  console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x. \nType \"exit\" to quit the app.\nType \"add\" to add, \"remove\" to remove and \"List\" to list the array. ')
 }
 
 
@@ -131,11 +132,13 @@ function add(y){
 function remove(p){
   if(p == 1){
     qwerty.shift();
+    console.log(qwerty);
   }else{
-    qwerty.slice(p-1, 1);
+    qwerty.splice(p - 1, 1);
+    console.log(qwerty);
   }
 }
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("add a")
+onDataReceived("help")
