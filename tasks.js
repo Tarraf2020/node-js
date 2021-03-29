@@ -17,7 +17,7 @@ function startApp(name){
   console.log("--------------------")
 }
 
-
+var qwerty = [1,2,3,4,5];
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -54,7 +54,14 @@ function onDataReceived(text) {
       y = text.trim().split(" ").pop();
       add(y);
     }
-   
+  }
+  else if(text.trim().split(" ", 1) == 'remove'){
+    if(text == "remove"){
+      qwerty.pop();
+    }else{
+      p = text.trim().split(" ").pop();
+      remove(p);
+    }
   }
   else{
     unknownCommand(text);
@@ -118,7 +125,15 @@ function list(){
 function add(y){
   var arr = [];
   arr.push(y);
-  console.log(y);
+  console.log(arr);
+}
+
+function remove(p){
+  if(p == 1){
+    qwerty.shift();
+  }else{
+    qwerty.slice(p-1, 1);
+  }
 }
 
 // The following line starts the application
