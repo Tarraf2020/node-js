@@ -40,6 +40,9 @@ function onDataReceived(text) {
   else if(text === 'hello'){
     hello();
   }
+  else if(text === 'help'){
+    list();
+  }
   else{
     unknownCommand(text);
   }
@@ -78,6 +81,11 @@ function quit(){
   process.exit();
 }
 
+
+function list(){
+  console.log('Type \"hello\" to say hello! or \"exit\" to quit the app')
+}
+
 // The following line starts the application
 startApp("Ali")
-onDataReceived("exit")
+onDataReceived("help")
