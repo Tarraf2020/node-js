@@ -70,7 +70,7 @@ function unknownCommand(c){
 function hello(x){
   if (x === "hello") {
     console.log('hello!');
-  }
+  } 
   else {
     console.log('hello ' + x + '!')
   }
