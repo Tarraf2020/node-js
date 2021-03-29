@@ -81,7 +81,11 @@ function quit(){
   process.exit();
 }
 
-
+/**
+ * Says list of help
+ *
+ * @returns {void}
+ */
 function list(){
   console.log('Type \"hello\" to say hello! or \"exit\" to quit the app')
 }
