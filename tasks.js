@@ -34,7 +34,7 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit') {
+  if (text === 'quit' || text === 'exit') {
     quit();
   }
   else if(text === 'hello'){
@@ -80,4 +80,4 @@ function quit(){
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("hello")
+onDataReceived("exit")
