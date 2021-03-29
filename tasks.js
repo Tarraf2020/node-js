@@ -47,6 +47,15 @@ function onDataReceived(text) {
   else if(text === 'list'){
     list();
   }
+  else if(text.trim().split(" ", 1) == 'add'){
+    if(text == "add"){
+      console.log('error')
+    }else{
+      y = text.trim().split(" ").pop();
+      add(y);
+    }
+   
+  }
   else{
     unknownCommand(text);
   }
@@ -106,6 +115,12 @@ function list(){
   }
 }
 
+function add(y){
+  var arr = [];
+  arr.push(y);
+  console.log(y);
+}
+
 // The following line starts the application
 startApp("Ali")
-onDataReceived("list")
+onDataReceived("add a")
