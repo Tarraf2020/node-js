@@ -17,7 +17,13 @@ function startApp(name){
   console.log("--------------------")
 }
 
-var qwerty = [1,2,3,4,5];
+var qwerty = [
+  {name : 'ali', done : true},
+  {name : 'ahmad', done : false},
+  {name : 'hasan', done : false},
+  {name : 'haydar', done : false},
+  {name : 'mosta', done : false},  
+];
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -129,7 +135,9 @@ function help(){
 
 function list(){
   for(var i=0;i<qwerty.length;i++){
-    console.log(`${i+1} ${qwerty[i]}`);
+    if(qwerty[i].done)
+   { console.log(`[✓] ${qwerty[i].name}`);}
+   else {console.log(`[ ] ${qwerty[i].name}`);}
   }
 }
 
