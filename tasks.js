@@ -37,8 +37,9 @@ function onDataReceived(text) {
   if (text === 'quit' || text === 'exit') {
     quit();
   }
-  else if(text === 'hello'){
-    hello();
+  else if(text.trim().split(" ", 1) == 'hello'){
+    var x = text.trim().split(" ").pop();
+    hello(x);
   }
   else if(text === 'help'){
     list();
@@ -66,8 +67,13 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
-  console.log('hello!')
+function hello(x){
+  if (x === "hello") {
+    console.log('hello!');
+  }
+  else {
+    console.log('hello ' + x + '!')
+  }
 }
 
 
@@ -92,4 +98,4 @@ function list(){
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("help")
+onDataReceived("hello akt")
