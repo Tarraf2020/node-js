@@ -42,6 +42,9 @@ function onDataReceived(text) {
     hello(x);
   }
   else if(text === 'help'){
+    help();
+  }
+  else if(text === 'list'){
     list();
   }
   else{
@@ -88,14 +91,21 @@ function quit(){
 }
 
 /**
- * Says list of help
+ * Says help to list
  *
  * @returns {void}
  */
-function list(){
+function help(){
   console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x.\nType \"exit\" to quit the app.')
+}
+
+
+function list(){
+  for(var i=1;i<3;i++){
+    console.log(i);
+  }
 }
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("help")
+onDataReceived("list")
