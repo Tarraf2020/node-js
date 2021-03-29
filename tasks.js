@@ -56,13 +56,17 @@ function onDataReceived(text) {
     }
   }
   else if(text.trim().split(" ", 1) == 'remove'){
+    p = text.trim().split(" ").pop();
+    if(p > qwerty.length ){
+        console.log('The givven number is not available');
+    }else {
     if(text == "remove"){
       qwerty.pop();
       console.log(qwerty);
     }else{
-      p = text.trim().split(" ").pop();
+     
       remove(p);
-    }
+    }}
   }
   else{
     unknownCommand(text);
@@ -141,4 +145,4 @@ function remove(p){
 
 // The following line starts the application
 startApp("Ali")
-onDataReceived("help")
+onDataReceived("remove 10")
