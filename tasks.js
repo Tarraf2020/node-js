@@ -135,7 +135,7 @@ function quit(){
  * @returns {void}
  */
 function help(){
-  console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x. \nType \"exit\" to quit the app.\nType \"add\" to add, \"remove\" to remove and \"List\" to list the array. ')
+  console.log('Type \"hello\" to say hello! or \"hello + x\" to say hello + x. \nType \"exit\" to quit the app.\nType \"add\" to add, \"remove\" to remove and \"List\" to list the array.\n Type \"edit\" to edit in the list.\n Tpe \"check\" or \"unchek\" to check or unchek the elements in the list ')
 }
 
 
