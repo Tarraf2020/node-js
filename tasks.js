@@ -78,7 +78,13 @@ function onDataReceived(text) {
       edit(qwerty, text);
   }
 
+  else if(text.trim().split(" ", 1) == 'check'){
+    check(qwerty,text);
+  }
   
+  else if(text.trim().split(" ", 1) == 'uncheck'){
+    unCheck(qwerty,text);
+  }
 
   else{
     unknownCommand(text);
@@ -166,6 +172,25 @@ function edit(qwerty, text){
  }else {
   console.log('ERROR');
  }
+}
+
+function check(qwerty,text){
+  var b =text.trim().split(' ');
+  if(b.length == 1){
+    console.log('ERROR');
+  }else if (b.length == 2){
+    qwerty[b[1]-1].done = true;
+  }
+}
+
+
+function unCheck(qwerty,text){
+  var b =text.trim().split(' ');
+  if(b.length == 1){
+    console.log('ERROR');
+  }else if (b.length == 2){
+    qwerty[b[1]-1].done = false;
+  }
 }
 
 // The following line starts the application
