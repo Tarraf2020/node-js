@@ -10,6 +10,10 @@ try {
 var qwerty = JSON.parse(data1);
 
 
+
+const process = require("process");
+var jkl = process.argv;
+
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -46,7 +50,7 @@ function startApp(name){
  */
 function onDataReceived(text) {
   if (text.trim() === 'quit' || text.trim() === 'exit') {
-    quit();
+    quit(jkl);
   }
 
   else if(text.trim().split(" ", 1) == 'hello'){
@@ -119,10 +123,14 @@ function hello(x){
  *
  * @returns {void}
  */
-function quit(){
+function quit(jkl){
   var fs= require("fs");
   var data1= JSON.stringify(qwerty);
-  fs.writeFileSync("database.json",data1)
+  fs.writeFileSync("database.json",data1);
+  if(jkl.length > 2){
+    fs.writeFile("./"+jkl[2], data1, (err)=>{if(!err){console.log('aya shi')}});
+    fs.writeFileSync(jkl[2], data1);
+  }
   console.log('Quitting now, goodbye!')
   process.exit();
 }
