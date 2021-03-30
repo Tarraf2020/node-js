@@ -1,4 +1,15 @@
 
+var fs= require("fs");
+var data1 = fs.readFileSync("database.json", "utf-8");
+try {
+  if(data1 == "")
+  throw "empty"
+} catch  {
+  data1 = '[{"name" : "ali", "done" : false}]'
+}
+var qwerty = JSON.parse(data1);
+
+
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -17,13 +28,7 @@ function startApp(name){
   console.log("--------------------")
 }
 
-var qwerty = [
-  {name : 'ali', done : true},
-  {name : 'ahmad', done : false},
-  {name : 'hasan', done : false},
-  {name : 'haydar', done : false},
-  {name : 'mosta', done : false},  
-];
+
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -43,40 +48,30 @@ function onDataReceived(text) {
   if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
   }
+
   else if(text.trim().split(" ", 1) == 'hello'){
     var x = text.trim().split(" ").pop();
     hello(x);
   }
+
   else if(text.trim() === 'help'){
     help();
   }
+
   else if(text.trim() === 'list'){
     list();
   }
-  else if(text.trim().split(" ", 1) == 'add'){
-    if(text.trim() == "add"){
-      console.log('error')
-    }else{
-      y = text.trim().split(" ").pop();
-      add(y);
-    }
+
+  else if (text.trim().split(" ", 1) == 'add') {
+    add(qwerty, text);
   }
-  else if(text.trim().split(" ", 1) == 'remove'){
-    p = text.trim().split(" ").pop();
-    if(p > qwerty.length ){
-        console.log('The givven number is not available');
-    }else {
-    if(text.trim() == "remove"){
-      qwerty.pop();
-      console.log(qwerty);
-    }else{
-     
-      remove(p);
-    }}
+  
+  else if (text.trim().split(" ", 1) == 'remove') {
+    remove(qwerty, text);
   }
-  else if(text.trim().split(" ", 1) == 'edit'){
-      edit(qwerty, text);
-  }
+
+  else if (text.trim().split(" ", 1) == 'edit') {
+    edit(qwerty, text);}
 
   else if(text.trim().split(" ", 1) == 'check'){
     check(qwerty,text);
@@ -125,6 +120,9 @@ function hello(x){
  * @returns {void}
  */
 function quit(){
+  var fs= require("fs");
+  var data1= JSON.stringify(qwerty);
+  fs.writeFileSync("database.json",data1)
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -147,31 +145,40 @@ function list(){
   }
 }
 
-function add(y){
-  var arr = [];
-  arr.push(y);
-  console.log(arr);
-}
-
-function remove(p){
-  if(p == 1){
-    qwerty.shift();
-    console.log(qwerty);
-  }else{
-    qwerty.splice(p - 1, 1);
-    console.log(qwerty);
+function add(qwerty, text) {
+  var task = text.trim().split(" ").pop();
+  if (text.trim().split(" ").length == 1) {
+    console.log("error")
+  } else {
+    qwerty = qwerty.push({ name: task, done: false });
+    console.log(task + ' has been added to list successfully.')
   }
 }
 
-function edit(qwerty, text){
- var t =text.trim().split(' ');
-  if(t.length == 2){
-   qwerty[qwerty.length - 1] = t[1];
- } else if(t.length > 2){
-   qwerty[t[1]-1] = t[2];
- }else {
-  console.log('ERROR');
- }
+function remove(qwerty, text) {
+  var task = text.trim().split(" ").pop();
+  if (text.trim().split(" ").length == 1) {
+    qwerty.pop();
+    console.log('task ' + qwerty.length + ' has been removed from list successfully.')
+  } else if (task > qwerty.length) {
+    console.log('this task number is not exist! ')
+  } else {
+    qwerty.splice(task - 1, 1);
+    console.log('task ' + task + ' has been removed from list successfully.')
+  }
+}
+
+function edit(qwerty, text) {
+  var tasks = text.trim().split(" ");
+  if (tasks.length == 1) {
+    console.log("error")
+  } else if (tasks.length == 2) {
+    qwerty[qwerty.length - 1].name = tasks[1];
+    console.log('the task ' + qwerty.length + ' change to ' + tasks[1])
+  } else {
+    qwerty[tasks[1] - 1].name = tasks[2];
+    console.log('the task ' + tasks[1] + ' change to ' + tasks[2])
+  }
 }
 
 function check(qwerty,text){
